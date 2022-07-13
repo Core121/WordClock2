@@ -32,7 +32,7 @@ export class FuzzyTimeComponent implements OnInit {
   }
 
   getFuzzyTime() {
-    return this.wordTime.getTime();
+    return this.wordTime.currentWordTime;
   }
 
 

@@ -1,12 +1,13 @@
 export class WordTime {
     public currentTime: Date;
-
+    public currentWordTime: string = '';
 
     constructor() {
         this.currentTime = new Date();
+        this.currentWordTime = this.getTime();
     }
 
-    public getTime() : string {
+    private getTime() : string {
         var minutesInWords = this.getMinutesInWords();
         minutesInWords += minutesInWords != '' ? '<br>' : '';
         var preposition = this.getPreposition();
