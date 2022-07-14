@@ -111,6 +111,7 @@ export class WordTime {
 
     public getTimePeriod(): string {
         var currentHour = this.currentTime.getHours();
+        currentHour = this.currentTime.getMinutes() > 32 ? currentHour + 1 : currentHour;
         if (currentHour >= 5 && currentHour < 12) {
             return 'in the morning';
         }
@@ -118,7 +119,7 @@ export class WordTime {
             return 'in the afternoon';
         }
         else if (currentHour >= 17 && currentHour < 21) {
-            return 'in the afternoon';
+            return 'in the evening';
         }
         else {
             return 'at night';
