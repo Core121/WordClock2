@@ -1,26 +1,13 @@
 export class WordTime {
     public currentTime: Date;
-    public currentWordTime: string = '';
 
     constructor() {
         this.currentTime = new Date();
-        this.currentWordTime = this.getTime();
     }
 
-    private getTime() : string {
-        var minutesInWords = this.getMinutesInWords();
-        minutesInWords += minutesInWords != '' ? '<br>' : '';
-        var preposition = this.getPreposition();
-        preposition += preposition != '' ? '<br>' : '';
-        var hoursInWords = this.getHoursInWords();
-        return 'It\'s ' + preposition + minutesInWords + hoursInWords + '.';
-    }
-
-    private getHoursInWords(): string {
+    public getHoursInWords(): string {
         var hour = this.currentTime.getHours();
         var minute = this.currentTime.getMinutes();
-        hour = hour > 12 ? hour - 12 : hour;
-        hour = minute > 32 ? hour + 1 : hour;
         if (hour === 24 && minute === 0) {
             return 'midnight';
         }
@@ -28,6 +15,8 @@ export class WordTime {
             return 'noon';
         }
         else {
+            hour = minute > 32 ? hour + 1 : hour;
+            hour = hour > 12 ? hour - 12 : hour;
             switch (hour) {
                 case 1:
                     return 'one';
@@ -60,7 +49,7 @@ export class WordTime {
     }
 
 
-    private getMinutesInWords(): string {
+    public getMinutesInWords(): string {
         var coeff = 1000 * 60 * 5;
         var rounded = new Date(Math.round(this.currentTime.getTime() / coeff) * coeff)
         switch (rounded.getMinutes()) {
@@ -105,7 +94,7 @@ export class WordTime {
         }
     }
 
-    private getPreposition(): string {
+    public getPreposition(): string {
         var roughMinute = this.getRoughMinute();
         switch (roughMinute) {
             case -1:
@@ -117,6 +106,22 @@ export class WordTime {
             default:
                 var onTimes = ['exactly', 'precisely', 'now', ''];
                 return onTimes[Math.floor(Math.random() * onTimes.length)]
+        }
+    }
+
+    public getTimePeriod(): string {
+        var currentHour = this.currentTime.getHours();
+        if (currentHour >= 5 && currentHour < 12) {
+            return 'in the morning';
+        }
+        else if (currentHour >= 12 && currentHour < 17) {
+            return 'in the afternoon';
+        }
+        else if (currentHour >= 17 && currentHour < 21) {
+            return 'in the afternoon';
+        }
+        else {
+            return 'at night';
         }
     }
 }

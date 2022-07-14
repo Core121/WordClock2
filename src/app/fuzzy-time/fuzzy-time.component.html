@@ -1,4 +1,4 @@
 <div>
-  <p [@fadeInOut]="this.getFuzzyTime()" class="clock-text m-5" [ngStyle]="{'color': settingsService.getFontColor()}"
-    [innerHTML]="this.getFuzzyTime()"></p>
+  <p [@fadeInOut]="this.currentWordTime" class="clock-text m-5" [ngStyle]="{'color': settingsService.getFontColor()}"
+    [innerHTML]="this.currentWordTime"></p>
 </div>

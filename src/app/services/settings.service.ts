@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   private backgroundColor = '#000';
   private fontColor = '#fff';
+  private timePeriodEnabled = true;
 
   constructor() { }
 
@@ -23,6 +24,14 @@ export class SettingsService {
 
   getBackgroundColor() {
     return this.backgroundColor;
+  }
+
+  setTimePeriodEnabled(timePeriodEnabled: boolean) {
+    this.timePeriodEnabled = timePeriodEnabled;
+  }
+
+  getTimePeriodEnabled() {
+    return this.timePeriodEnabled;
   }
 
 }
