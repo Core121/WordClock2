@@ -4,11 +4,11 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 
 export const fadeInOutTimeout = 1200;
 export const fadeInOut = trigger('fadeInOut', [
-  transition('void => *', [style({ opacity: '0'}), animate(fadeInOutTimeout)]),
+  transition('void => *', [style({ opacity: '0' }), animate(fadeInOutTimeout)]),
   transition('* => void', [animate(fadeInOutTimeout, style({ opacity: '0' }))]),
   transition('* => *', [
-    style({ opacity: '0'}),
-    animate(fadeInOutTimeout, style({ opacity: '1'})),
+    style({ opacity: '0' }),
+    animate(fadeInOutTimeout, style({ opacity: '1' })),
   ]),
 ]);
 
@@ -24,8 +24,11 @@ export class FuzzyTimeComponent implements OnInit {
 
   constructor() {
     setInterval(() => {
-      this.wordTime = new WordTime();
-    }, 60000 - this.wordTime.currentTime.getMilliseconds());
+      var now = new Date();
+      if (now.getMinutes() != this.wordTime.currentTime.getMinutes()) {
+        this.wordTime = new WordTime();
+      }
+    }, 1000);
   }
 
   ngOnInit(): void {
