@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WordTime } from '../models/word-time.model';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SettingsService } from '../services/settings.service';
 
 export const fadeInOutTimeout = 1200;
 export const fadeInOut = trigger('fadeInOut', [
@@ -22,7 +23,7 @@ export const fadeInOut = trigger('fadeInOut', [
 export class FuzzyTimeComponent implements OnInit {
   public wordTime: WordTime = new WordTime();
 
-  constructor() {
+  constructor(public settingsService: SettingsService) {
     setInterval(() => {
       var now = new Date();
       if (now.getMinutes() != this.wordTime.currentTime.getMinutes()) {
