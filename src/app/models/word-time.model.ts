@@ -1,11 +1,20 @@
 export class WordTime {
     public currentTime: Date;
+    public hour: string = "";
+    public minute: string = "";
+    public preposition: string = "";
+    public period: string = "";
+
 
     constructor() {
         this.currentTime = new Date();
+        this.hour = this.getHoursInWords();
+        this.minute = this.getMinutesInWords();
+        this.preposition = this.getPreposition();
+        this.period = this.getTimePeriod();
     }
 
-    public getHoursInWords(): string {
+    private getHoursInWords(): string {
         var hour = this.currentTime.getHours();
         var minute = this.currentTime.getMinutes();
         if (hour === 24 && minute === 0) {
@@ -49,7 +58,7 @@ export class WordTime {
     }
 
 
-    public getMinutesInWords(): string {
+    private getMinutesInWords(): string {
         var coeff = 1000 * 60 * 5;
         var rounded = new Date(Math.round(this.currentTime.getTime() / coeff) * coeff)
         switch (rounded.getMinutes()) {
@@ -94,7 +103,7 @@ export class WordTime {
         }
     }
 
-    public getPreposition(): string {
+    private getPreposition(): string {
         var roughMinute = this.getRoughMinute();
         switch (roughMinute) {
             case -1:
@@ -109,7 +118,7 @@ export class WordTime {
         }
     }
 
-    public getTimePeriod(): string {
+    private getTimePeriod(): string {
         var currentHour = this.currentTime.getHours();
         currentHour = this.currentTime.getMinutes() > 32 ? currentHour + 1 : currentHour;
         if (currentHour >= 5 && currentHour < 12) {

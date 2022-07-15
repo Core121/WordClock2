@@ -1,4 +1,9 @@
-<div>
-  <p [@fadeInOut]="this.currentWordTime" class="clock-text m-5" [ngStyle]="{'color': settingsService.getFontColor()}"
-    [innerHTML]="this.currentWordTime"></p>
+<div class="clock-text" [ngStyle]="{'color': settingsService.getFontColor()}">
+  <span>It's </span>
+  <span *ngIf="this.wordTime.preposition">{{this.wordTime.preposition}}</span>
+  <span *ngIf="this.wordTime.minute"><br />{{this.wordTime.minute}}</span>
+  <span *ngIf="this.wordTime.hour"><br />{{this.wordTime.hour}}</span>
+  <span
+    *ngIf="this.wordTime.period && this.settingsService.getTimePeriodEnabled()"><br />{{this.wordTime.period}}</span>
+  <span>.</span>
 </div>
