@@ -6,6 +6,11 @@ import { AppComponent } from './app.component';
 import { FuzzyTimeComponent } from './fuzzy-time/fuzzy-time.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+declare global {
+  interface Window {
+    wallpaperPropertyListener : any;
+  }
+}
 @NgModule({
   declarations: [
     AppComponent,
