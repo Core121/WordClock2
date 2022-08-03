@@ -6,32 +6,41 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   private backgroundColor = '#000';
   private fontColor = '#fff';
-  private timePeriodEnabled = true;
+  private timePeriodEnabled = false;
+  private alignment = 'left';
 
   constructor() { }
 
-  setFontColor(fontColor: string) {
+  public setFontColor(fontColor: string) {
     this.fontColor = fontColor;
   }
 
-  getFontColor() {
+  public getFontColor() {
     return this.fontColor;
   }
 
-  setBackgroundColor(backgroundColor: string) {
+  public setBackgroundColor(backgroundColor: string) {
     this.backgroundColor = backgroundColor;
   }
 
-  getBackgroundColor() {
+  public getBackgroundColor() {
     return this.backgroundColor;
   }
 
-  setTimePeriodEnabled(timePeriodEnabled: boolean) {
+  public setTimePeriodEnabled(timePeriodEnabled: boolean) {
     this.timePeriodEnabled = timePeriodEnabled;
   }
 
-  getTimePeriodEnabled() {
+  public getTimePeriodEnabled() {
     return this.timePeriodEnabled;
+  }
+
+  public setTextAlignment(alignment: string){
+    this.alignment = alignment;
+  }
+
+  public getTextAlignment(){
+    return this.alignment;
   }
 
 }

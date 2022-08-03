@@ -1,4 +1,4 @@
-<div class="clock-text" [ngStyle]="{'color': settingsService.getFontColor()}">
+<div class="clock-text" [ngStyle]="{'color': settingsService.getFontColor(), 'text-align' : settingsService.getTextAlignment()}">
   <span>It's </span>
   <span *ngIf="this.wordTime.preposition">{{this.wordTime.preposition}}</span>
   <span *ngIf="this.wordTime.minute"><br />{{this.wordTime.minute}}</span>

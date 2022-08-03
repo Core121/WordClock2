@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, HostListener, Inject, Renderer2, ViewEncapsulation } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, ElementRef, HostListener, Inject, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { SettingsService } from './services/settings.service';
-
-
 
 @Component({
   selector: 'app-root',
@@ -10,26 +9,44 @@ import { SettingsService } from './services/settings.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'wordclock2';
 
-
   constructor(private el: ElementRef, private renderer: Renderer2, private settingsService: SettingsService) {
-    window.wallpaperPropertyListener = {
-      applyUserProperties(properties) {
-        this.settingsService.setTimePeriodEnabled(false);
-      }
-    };
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.renderer.setStyle(this.el.nativeElement.ownerDocument.body, 'backgroundColor', this.settingsService.getBackgroundColor());
     window.wallpaperPropertyListener = {
-      applyUserProperties(properties) {
-        this.settingsService.setTimePeriodEnabled(false);
-      }
+      applyUserProperties: (properties) => {
+        console.log(properties);
+        if (properties.fontcolor) {
+          var customColor = properties.fontcolor.value.split(' ');
+          customColor = customColor.map(function (c) {
+            return Math.ceil(c * 255);
+          });
+          var customColorAsCSS = 'rgb(' + customColor + ')'
+          this.settingsService.setFontColor(customColorAsCSS);
+        }
+
+        if(properties.textalignment){
+          this.settingsService.setTextAlignment(properties.textalignment.value);
+        }
+
+        if(properties.backgroundcolor){
+          var customColor = properties.backgroundcolor.value.split(' ');
+          customColor = customColor.map(function (c) {
+            return Math.ceil(c * 255);
+          });
+          var customColorAsCSS = 'rgb(' + customColor + ')'
+          this.settingsService.setBackgroundColor(customColorAsCSS);
+          this.renderer.setStyle(this.el.nativeElement.ownerDocument.body, 'backgroundColor', this.settingsService.getBackgroundColor());
+        }
+
+        if(properties.timeperiod){
+          this.settingsService.setTimePeriodEnabled(properties.timeperiod.value);
+        }
+      },
     };
   }
-
-
 }

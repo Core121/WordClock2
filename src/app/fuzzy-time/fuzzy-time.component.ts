@@ -17,7 +17,6 @@ export const fadeInOut = trigger('fadeInOut', [
 
 export class FuzzyTimeComponent implements OnInit {
   public wordTime: WordTime = new WordTime();
-
   constructor(public settingsService: SettingsService) {
     setInterval(() => {
       var now = new Date();
@@ -28,7 +27,6 @@ export class FuzzyTimeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }
