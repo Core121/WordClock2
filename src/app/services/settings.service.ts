@@ -8,6 +8,7 @@ export class SettingsService {
   private fontColor = '#fff';
   private timePeriodEnabled = false;
   private alignment = 'left';
+  private fontSize = 96;
 
   constructor() { }
 
@@ -17,6 +18,14 @@ export class SettingsService {
 
   public getFontColor() {
     return this.fontColor;
+  }
+
+  public setFontSize(fontSize: number){
+    this.fontSize = fontSize;
+  }
+
+  public getFontSize(){
+    return this.fontSize;
   }
 
   public setBackgroundColor(backgroundColor: string) {
