@@ -46,6 +46,10 @@ export class AppComponent implements OnInit {
         if(properties.timeperiod){
           this.settingsService.setTimePeriodEnabled(properties.timeperiod.value);
         }
+
+        if(properties.fontsize){
+          this.settingsService.setFontSize(Number(properties.fontsize.value) ?? 96);
+        }
       },
     };
   }
