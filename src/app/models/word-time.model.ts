@@ -110,7 +110,7 @@ export class WordTime {
                 var earlyTimes = ['almost', 'nearly', 'just about'];
                 return earlyTimes[Math.floor(Math.random() * earlyTimes.length)]
             case 1:
-                var lateTimes = ['a little after', 'about', 'around'];
+                var lateTimes = ['a little after', 'about', 'around', 'roughly'];
                 return lateTimes[Math.floor(Math.random() * lateTimes.length)]
             default:
                 var onTimes = ['exactly', 'precisely', 'now', ''];
