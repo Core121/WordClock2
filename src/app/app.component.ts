@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this.renderer.setStyle(
       this.el.nativeElement.ownerDocument.body,
       'backgroundColor',
-      this.settingsService.getBackgroundColor()
+      this.settingsService.backgroundColor
     );
     window.wallpaperPropertyListener = {
       applyUserProperties: properties => {
@@ -41,11 +41,11 @@ export class AppComponent implements OnInit {
             return Math.ceil(c * 255);
           });
           var customColorAsCSS = 'rgb(' + customColor + ')';
-          this.settingsService.setFontColor(customColorAsCSS);
+          this.settingsService.fontColor = customColorAsCSS;
         }
 
         if (properties.textalignment) {
-          this.settingsService.setTextAlignment(properties.textalignment.value);
+          this.settingsService.textAlignment = properties.textalignment.value;
         }
 
         if (properties.backgroundcolor) {
@@ -54,24 +54,21 @@ export class AppComponent implements OnInit {
             return Math.ceil(c * 255);
           });
           var customColorAsCSS = 'rgb(' + customColor + ')';
-          this.settingsService.setBackgroundColor(customColorAsCSS);
+          this.settingsService.backgroundColor = customColorAsCSS;
           this.renderer.setStyle(
             this.el.nativeElement.ownerDocument.body,
             'backgroundColor',
-            this.settingsService.getBackgroundColor()
+            this.settingsService.backgroundColor
           );
         }
 
         if (properties.timeperiod) {
-          this.settingsService.setTimePeriodEnabled(
-            properties.timeperiod.value
-          );
+          this.settingsService.timePeriodEnabled = properties.timeperiod.value;
         }
 
         if (properties.fontsize) {
-          this.settingsService.setFontSize(
-            Number(properties.fontsize.value) ?? 96
-          );
+          this.settingsService.fontSize =
+            Number(properties.fontsize.value) ?? 96;
         }
       },
     };
