@@ -1,12 +1,12 @@
 <div
   class="clock-text"
   [ngStyle]="{
-    color: settingsService.getFontColor(),
-    'text-align': settingsService.getTextAlignment(),
-    'font-size': settingsService.getFontSize() + 'px',
+    color: settingsService.fontColor,
+    'text-align': settingsService.textAlignment,
+    'font-size': settingsService.fontSize + 'px',
   }"
-  [@fadeAnimation]="toggle"
-  (@fadeAnimation.done)="toggle = false">
+  [@fadeAnimation]="animationToggle"
+  (@fadeAnimation.done)="animationToggle = false">
   <span>It's </span>
   @if (this.wordTime.preposition) {
     <span>{{ this.wordTime.preposition }}</span>
@@ -17,8 +17,11 @@
   @if (this.wordTime.hour) {
     <span><br />{{ this.wordTime.hour }}</span>
   }
-  @if (this.wordTime.period && this.settingsService.getTimePeriodEnabled()) {
+  @if (this.wordTime.period && this.settingsService.timePeriodEnabled) {
     <span><br />{{ this.wordTime.period }}</span>
+  }
+  @if (this.wordTime.weekDay && this.settingsService.weekDayEnabled) {
+    <span><br />on {{ this.wordTime.weekDay }}</span>
   }
   <span>.</span>
 </div>

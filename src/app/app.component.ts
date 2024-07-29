@@ -70,6 +70,10 @@ export class AppComponent implements OnInit {
           this.settingsService.fontSize =
             Number(properties.fontsize.value) ?? 96;
         }
+
+        if (properties.weekday) {
+          this.settingsService.weekDayEnabled = properties.weekday.value;
+        }
       },
     };
   }
