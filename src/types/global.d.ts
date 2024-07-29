@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export {}; // needed to make TypeScript happy
 
 declare global {

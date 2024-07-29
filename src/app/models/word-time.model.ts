@@ -16,8 +16,8 @@ export class WordTime {
   }
 
   private getHoursInWords(): string {
-    var hour = this.currentTime.getHours();
-    var minute = this.currentTime.getMinutes();
+    let hour = this.currentTime.getHours();
+    const minute = this.currentTime.getMinutes();
     if (hour === 24 && minute === 0) {
       return 'midnight';
     } else if (hour === 12 && minute === 0) {
@@ -57,8 +57,8 @@ export class WordTime {
   }
 
   private getMinutesInWords(): string {
-    var coeff = 1000 * 60 * 5;
-    var rounded = new Date(
+    const coeff = 1000 * 60 * 5;
+    const rounded = new Date(
       Math.round(this.currentTime.getTime() / coeff) * coeff
     );
     switch (rounded.getMinutes()) {
@@ -112,7 +112,7 @@ export class WordTime {
   }
 
   private getRoughMinute(): number {
-    var roughMinute = this.currentTime.getMinutes() % 5;
+    const roughMinute = this.currentTime.getMinutes() % 5;
     switch (roughMinute) {
       case 1:
       case 2:
@@ -126,22 +126,25 @@ export class WordTime {
   }
 
   private getPreposition(): string {
-    var roughMinute = this.getRoughMinute();
+    const roughMinute = this.getRoughMinute();
     switch (roughMinute) {
-      case -1:
-        var earlyTimes = ['almost', 'nearly', 'just about'];
+      case -1: {
+        const earlyTimes = ['almost', 'nearly', 'just about'];
         return earlyTimes[Math.floor(Math.random() * earlyTimes.length)];
-      case 1:
-        var lateTimes = ['a little after', 'about', 'around', 'roughly'];
+      }
+      case 1: {
+        const lateTimes = ['a little after', 'about', 'around', 'roughly'];
         return lateTimes[Math.floor(Math.random() * lateTimes.length)];
-      default:
-        var onTimes = ['exactly', 'precisely', 'now', ''];
+      }
+      default: {
+        const onTimes = ['exactly', 'precisely', 'now', ''];
         return onTimes[Math.floor(Math.random() * onTimes.length)];
+      }
     }
   }
 
   private getTimePeriod(): string {
-    var currentHour = this.currentTime.getHours();
+    let currentHour = this.currentTime.getHours();
     currentHour =
       this.currentTime.getMinutes() > 32 ? currentHour + 1 : currentHour;
     if (currentHour >= 5 && currentHour < 12) {

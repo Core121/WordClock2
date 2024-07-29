@@ -1,10 +1,6 @@
-import { DOCUMENT } from '@angular/common';
 import {
-  AfterViewInit,
   Component,
   ElementRef,
-  HostListener,
-  Inject,
   OnInit,
   Renderer2,
   ViewEncapsulation,
@@ -36,11 +32,11 @@ export class AppComponent implements OnInit {
       applyUserProperties: properties => {
         console.log(properties);
         if (properties.fontcolor) {
-          var customColor = properties.fontcolor.value.split(' ');
+          let customColor = properties.fontcolor.value.split(' ');
           customColor = customColor.map(function (c) {
             return Math.ceil(c * 255);
           });
-          var customColorAsCSS = 'rgb(' + customColor + ')';
+          const customColorAsCSS = 'rgb(' + customColor + ')';
           this.settingsService.fontColor = customColorAsCSS;
         }
 
@@ -49,11 +45,11 @@ export class AppComponent implements OnInit {
         }
 
         if (properties.backgroundcolor) {
-          var customColor = properties.backgroundcolor.value.split(' ');
+          let customColor = properties.backgroundcolor.value.split(' ');
           customColor = customColor.map(function (c) {
             return Math.ceil(c * 255);
           });
-          var customColorAsCSS = 'rgb(' + customColor + ')';
+          const customColorAsCSS = 'rgb(' + customColor + ')';
           this.settingsService.backgroundColor = customColorAsCSS;
           this.renderer.setStyle(
             this.el.nativeElement.ownerDocument.body,
