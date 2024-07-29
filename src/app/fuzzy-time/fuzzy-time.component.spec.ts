@@ -8,9 +8,8 @@ describe('FuzzyTimeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FuzzyTimeComponent ]
-    })
-    .compileComponents();
+      declarations: [FuzzyTimeComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
