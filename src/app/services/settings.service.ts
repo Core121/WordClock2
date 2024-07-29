@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService {
   private backgroundColor = '#000';
@@ -10,7 +10,7 @@ export class SettingsService {
   private alignment = 'left';
   private fontSize = 96;
 
-  constructor() { }
+  constructor() {}
 
   public setFontColor(fontColor: string) {
     this.fontColor = fontColor;
@@ -20,11 +20,11 @@ export class SettingsService {
     return this.fontColor;
   }
 
-  public setFontSize(fontSize: number){
+  public setFontSize(fontSize: number) {
     this.fontSize = fontSize;
   }
 
-  public getFontSize(){
+  public getFontSize() {
     return this.fontSize;
   }
 
@@ -44,12 +44,11 @@ export class SettingsService {
     return this.timePeriodEnabled;
   }
 
-  public setTextAlignment(alignment: string){
+  public setTextAlignment(alignment: string) {
     this.alignment = alignment;
   }
 
-  public getTextAlignment(){
+  public getTextAlignment() {
     return this.alignment;
   }
-
 }

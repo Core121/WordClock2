@@ -7,14 +7,15 @@ import { SettingsService } from '../services/settings.service';
   selector: 'app-fuzzy-time',
   templateUrl: './fuzzy-time.component.html',
   styleUrls: ['./fuzzy-time.component.scss'],
-  animations: [trigger("fadeAnimation", [
-    transition("false=>true", [
-      style({ opacity: 0 }), //At begin animation, opacity=0
-      animate("1000ms", style({ opacity: 1 }))  //the animation makes opacity=0 to opacity=1
-    ])
-  ])]
+  animations: [
+    trigger('fadeAnimation', [
+      transition('false=>true', [
+        style({ opacity: 0 }), //At begin animation, opacity=0
+        animate('1000ms', style({ opacity: 1 })), //the animation makes opacity=0 to opacity=1
+      ]),
+    ]),
+  ],
 })
-
 export class FuzzyTimeComponent {
   public wordTime: WordTime = new WordTime();
   toggle: boolean = false;
@@ -28,5 +29,4 @@ export class FuzzyTimeComponent {
       }
     }, 1000);
   }
-
 }
