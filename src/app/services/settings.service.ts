@@ -1,55 +1,63 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SettingsService {
-  private backgroundColor = '#000';
-  private fontColor = '#fff';
-  private timePeriodEnabled = false;
-  private alignment = 'left';
-  private fontSize = 96;
+  private _backgroundColor = '#000';
+  private _fontColor = '#fff';
+  private _timePeriodEnabled = false;
+  private _textalignment = 'left';
+  private _fontSize = 96;
+  private _weekDayEnabled = false;
 
-  constructor() { }
+  constructor() {}
 
-  public setFontColor(fontColor: string) {
-    this.fontColor = fontColor;
+  // Background color
+  get backgroundColor(): string {
+    return this._backgroundColor;
+  }
+  set backgroundColor(value: string) {
+    this._backgroundColor = value;
   }
 
-  public getFontColor() {
-    return this.fontColor;
+  // Font color
+  get fontColor(): string {
+    return this._fontColor;
+  }
+  set fontColor(value: string) {
+    this._fontColor = value;
   }
 
-  public setFontSize(fontSize: number){
-    this.fontSize = fontSize;
+  // Font size
+  get fontSize(): number {
+    return this._fontSize;
+  }
+  set fontSize(value: number) {
+    this._fontSize = value;
   }
 
-  public getFontSize(){
-    return this.fontSize;
+  // Time period enabled
+  get timePeriodEnabled(): boolean {
+    return this._timePeriodEnabled;
+  }
+  set timePeriodEnabled(value: boolean) {
+    this._timePeriodEnabled = value;
   }
 
-  public setBackgroundColor(backgroundColor: string) {
-    this.backgroundColor = backgroundColor;
+  // Text alignment
+  get textAlignment(): string {
+    return this._textalignment;
+  }
+  set textAlignment(value: string) {
+    this._textalignment = value;
   }
 
-  public getBackgroundColor() {
-    return this.backgroundColor;
+  // Weekday enabled
+  get weekDayEnabled(): boolean {
+    return this._weekDayEnabled;
   }
-
-  public setTimePeriodEnabled(timePeriodEnabled: boolean) {
-    this.timePeriodEnabled = timePeriodEnabled;
+  set weekDayEnabled(value: boolean) {
+    this._weekDayEnabled = value;
   }
-
-  public getTimePeriodEnabled() {
-    return this.timePeriodEnabled;
-  }
-
-  public setTextAlignment(alignment: string){
-    this.alignment = alignment;
-  }
-
-  public getTextAlignment(){
-    return this.alignment;
-  }
-
 }
