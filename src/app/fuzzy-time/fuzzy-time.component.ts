@@ -10,22 +10,22 @@ import { NgStyle } from '@angular/common';
   imports: [NgStyle],
 })
 export class FuzzyTimeComponent {
-  wordTime = signal<WordTime>(new WordTime());
+  wordTime = signal<WordTime | null>(new WordTime());
   settingsService = inject(SettingsService);
 
   constructor() {
-    // Run every minute
-    setInterval(() => {
+    setInterval(async () => {
       const now = new Date();
-      // Check if since the last check if time has progressed by at least a minute
-      if (now.getMinutes() != this.wordTime().currentTime.getMinutes()) {
-        this.wordTime.set(new WordTime()); // Create new WordTime object, invoking all properties with new time
+      if (now.getMinutes() !== this.wordTime()?.currentTime.getMinutes()) {
+        //  Triggers animate.leave
+        this.wordTime.set(null);
+
+        //  Wait 1s for the exit animation to visually finish
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Create new WordTime object, invoking all properties with new time
+        this.wordTime.set(new WordTime());
       }
     }, 1000);
-  }
-
-  triggerFade(element: HTMLElement) {
-    element.classList.remove('fade-in-active');
-    element.classList.add('fade-in-active');
   }
 }

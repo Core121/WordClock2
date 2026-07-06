@@ -1,12 +1,13 @@
-<div
-  class="clock-text"
-  [ngStyle]="{
-    color: settingsService.fontColor,
-    'text-align': settingsService.textAlignment,
-    'font-size': settingsService.fontSize + 'px',
-  }"
-  [animate.enter]="triggerFade">
-  @if (wordTime(); as wordTime) {
+@if (wordTime(); as wordTime) {
+  <div
+    class="clock-text"
+    [ngStyle]="{
+      color: settingsService.fontColor,
+      'text-align': settingsService.textAlignment,
+      'font-size': settingsService.fontSize + 'px',
+    }"
+    animate.enter="fade-in-enter"
+    animate.leave="fade-in-leave">
     <span>It's&nbsp;</span>
     @if (wordTime.preposition) {
       <span>{{ wordTime.preposition }}</span>
@@ -35,5 +36,5 @@
         on {{ wordTime.weekDay }}
       </span>
     }
-  }
-</div>
+  </div>
+}
