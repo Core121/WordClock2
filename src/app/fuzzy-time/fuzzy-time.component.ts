@@ -1,34 +1,31 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { WordTime } from '../models/word-time.model';
-import { animate, style, transition } from '@angular/animations';
 import { SettingsService } from '../services/settings.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-fuzzy-time',
   templateUrl: './fuzzy-time.component.html',
   styleUrls: ['./fuzzy-time.component.scss'],
-  animations: [
-    transition(':enter', [
-      style({ opacity: 0 }),
-      animate('1000ms ease-in', style({ opacity: 1 })),
-    ]),
-  ],
-  changeDetection: ChangeDetectionStrategy.Eager,
-  standalone: false,
+  imports: [NgStyle],
 })
 export class FuzzyTimeComponent {
-  public wordTime: WordTime = new WordTime();
-  animationToggle: boolean = false;
+  wordTime = signal<WordTime>(new WordTime());
+  settingsService = inject(SettingsService);
 
-  constructor(public settingsService: SettingsService) {
+  constructor() {
     // Run every minute
     setInterval(() => {
       const now = new Date();
       // Check if since the last check if time has progressed by at least a minute
-      if (now.getMinutes() != this.wordTime.currentTime.getMinutes()) {
-        this.wordTime = new WordTime(); // Create new WordTime object, invoking all properties with new time
-        this.animationToggle = true; // Starts fade-in animation
+      if (now.getMinutes() != this.wordTime().currentTime.getMinutes()) {
+        this.wordTime.set(new WordTime()); // Create new WordTime object, invoking all properties with new time
       }
     }, 1000);
+  }
+
+  triggerFade(element: HTMLElement) {
+    element.classList.remove('fade-in-active');
+    element.classList.add('fade-in-active');
   }
 }

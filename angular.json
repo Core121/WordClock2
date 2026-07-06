@@ -30,10 +30,6 @@
               "base": "dist/wordclock2"
             },
             "index": "src/index.html",
-            "polyfills": [
-              "src/polyfills.ts",
-              "@angular/localize/init"
-            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -99,10 +95,6 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "src/test.ts",
-            "polyfills": [
-              "src/polyfills.ts",
-              "@angular/localize/init"
-            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",

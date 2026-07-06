@@ -5,23 +5,24 @@
     'text-align': settingsService.textAlignment,
     'font-size': settingsService.fontSize + 'px',
   }"
-  [@fadeAnimation]="animationToggle"
-  (@fadeAnimation.done)="animationToggle = false">
-  <span>It's </span>
-  @if (this.wordTime.preposition) {
-    <span>{{ this.wordTime.preposition }}</span>
+  [animate.enter]="triggerFade">
+  @if (wordTime(); as wordTime) {
+    <span>It's </span>
+    @if (wordTime.preposition) {
+      <span>{{ wordTime.preposition }}</span>
+    }
+    @if (wordTime.minute) {
+      <span><br />{{ wordTime.minute }}</span>
+    }
+    @if (wordTime.hour) {
+      <span><br />{{ wordTime.hour }}</span>
+    }
+    @if (wordTime.period && settingsService.timePeriodEnabled) {
+      <span><br />{{ wordTime.period }}</span>
+    }
+    @if (wordTime.weekDay && this.settingsService.weekDayEnabled) {
+      <span><br />on {{ wordTime.weekDay }}</span>
+    }
+    <span>.</span>
   }
-  @if (this.wordTime.minute) {
-    <span><br />{{ this.wordTime.minute }}</span>
-  }
-  @if (this.wordTime.hour) {
-    <span><br />{{ this.wordTime.hour }}</span>
-  }
-  @if (this.wordTime.period && this.settingsService.timePeriodEnabled) {
-    <span><br />{{ this.wordTime.period }}</span>
-  }
-  @if (this.wordTime.weekDay && this.settingsService.weekDayEnabled) {
-    <span><br />on {{ this.wordTime.weekDay }}</span>
-  }
-  <span>.</span>
 </div>

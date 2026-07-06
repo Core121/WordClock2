@@ -1,10 +1,10 @@
 export class WordTime {
   public currentTime: Date;
-  public weekDay: string = '';
-  public hour: string = '';
-  public minute: string = '';
-  public preposition: string = '';
-  public period: string = '';
+  public weekDay = '';
+  public hour = '';
+  public minute = '';
+  public preposition = '';
+  public period = '';
 
   constructor() {
     this.currentTime = new Date();
