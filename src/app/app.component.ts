@@ -15,7 +15,6 @@ import { FuzzyTimeComponent } from './fuzzy-time/fuzzy-time.component';
   imports: [FuzzyTimeComponent],
 })
 export class AppComponent implements OnInit {
-  title = 'wordclock2';
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
   private readonly settingsService = inject(SettingsService);

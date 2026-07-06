@@ -7,21 +7,33 @@
   }"
   [animate.enter]="triggerFade">
   @if (wordTime(); as wordTime) {
-    <span>It's </span>
+    <span>It's</span>
     @if (wordTime.preposition) {
       <span>{{ wordTime.preposition }}</span>
     }
     @if (wordTime.minute) {
-      <span><br />{{ wordTime.minute }}</span>
+      <span>
+        <br />
+        {{ wordTime.minute }}
+      </span>
     }
     @if (wordTime.hour) {
-      <span><br />{{ wordTime.hour }}</span>
+      <span>
+        <br />
+        {{ wordTime.hour }}
+      </span>
     }
     @if (wordTime.period && settingsService.timePeriodEnabled) {
-      <span><br />{{ wordTime.period }}</span>
+      <span>
+        <br />
+        {{ wordTime.period }}
+      </span>
     }
     @if (wordTime.weekDay && this.settingsService.weekDayEnabled) {
-      <span><br />on {{ wordTime.weekDay }}</span>
+      <span>
+        <br />
+        on {{ wordTime.weekDay }}
+      </span>
     }
     <span>.</span>
   }
