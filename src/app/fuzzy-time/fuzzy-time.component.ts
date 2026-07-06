@@ -1,19 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { WordTime } from '../models/word-time.model';
 import { animate, style, transition } from '@angular/animations';
 import { SettingsService } from '../services/settings.service';
 
 @Component({
-    selector: 'app-fuzzy-time',
-    templateUrl: './fuzzy-time.component.html',
-    styleUrls: ['./fuzzy-time.component.scss'],
-    animations: [
-        transition(':enter', [
-  style({ opacity: 0 }),
-  animate('1000ms ease-in', style({ opacity: 1 }))
-])
-    ],
-    standalone: false
+  selector: 'app-fuzzy-time',
+  templateUrl: './fuzzy-time.component.html',
+  styleUrls: ['./fuzzy-time.component.scss'],
+  animations: [
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate('1000ms ease-in', style({ opacity: 1 })),
+    ]),
+  ],
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class FuzzyTimeComponent {
   public wordTime: WordTime = new WordTime();

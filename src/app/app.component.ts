@@ -4,15 +4,17 @@ import {
   OnInit,
   Renderer2,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { SettingsService } from './services/settings.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   title = 'wordclock2';
