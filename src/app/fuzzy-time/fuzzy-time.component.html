@@ -7,7 +7,7 @@
   }"
   [animate.enter]="triggerFade">
   @if (wordTime(); as wordTime) {
-    <span>It's</span>
+    <span>It's&nbsp;</span>
     @if (wordTime.preposition) {
       <span>{{ wordTime.preposition }}</span>
     }
@@ -35,6 +35,5 @@
         on {{ wordTime.weekDay }}
       </span>
     }
-    <span>.</span>
   }
 </div>
