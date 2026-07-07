@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class SettingsService {
   private _backgroundColor = '#000';
   private _fontColor = '#fff';
@@ -10,8 +8,6 @@ export class SettingsService {
   private _textalignment = 'left';
   private _fontSize = 96;
   private _weekDayEnabled = false;
-
-  constructor() {}
 
   // Background color
   get backgroundColor(): string {

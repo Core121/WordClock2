@@ -1,33 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { WordTime } from '../models/word-time.model';
-import { animate, style, transition, trigger } from '@angular/animations';
 import { SettingsService } from '../services/settings.service';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-fuzzy-time',
   templateUrl: './fuzzy-time.component.html',
   styleUrls: ['./fuzzy-time.component.scss'],
-  animations: [
-    trigger('fadeAnimation', [
-      transition('false=>true', [
-        style({ opacity: 0 }), //At begin animation, opacity=0
-        animate('1000ms', style({ opacity: 1 })), //the animation makes opacity=0 to opacity=1
-      ]),
-    ]),
-  ],
+  imports: [NgStyle],
 })
 export class FuzzyTimeComponent {
-  public wordTime: WordTime = new WordTime();
-  animationToggle: boolean = false;
+  wordTime = signal<WordTime | null>(new WordTime());
+  settingsService = inject(SettingsService);
 
-  constructor(public settingsService: SettingsService) {
-    // Run every minute
-    setInterval(() => {
+  constructor() {
+    setInterval(async () => {
       const now = new Date();
-      // Check if since the last check if time has progressed by at least a minute
-      if (now.getMinutes() != this.wordTime.currentTime.getMinutes()) {
-        this.wordTime = new WordTime(); // Create new WordTime object, invoking all properties with new time
-        this.animationToggle = true; // Starts fade-in animation
+      if (now.getMinutes() !== this.wordTime()?.currentTime.getMinutes()) {
+        //  Triggers animate.leave
+        this.wordTime.set(null);
+
+        //  Wait 1s for the exit animation to visually finish
+        await new Promise(resolve => setTimeout(resolve, 100));
+
+        // Create new WordTime object, invoking all properties with new time
+        this.wordTime.set(new WordTime());
       }
     }, 1000);
   }

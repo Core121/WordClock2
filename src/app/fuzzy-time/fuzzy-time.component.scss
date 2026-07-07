@@ -6,4 +6,18 @@
   font-family: 'Product Sans', Helvetica, Arial, sans-serif;
   line-height: normal;
   margin: 10%;
+  opacity: 1;
+  transition: opacity 1000ms ease-in-out;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+
+.fade-in-active {
+  opacity: 1;
+}
+
+.fade-out-active {
+  opacity: 0;
 }

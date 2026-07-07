@@ -1,26 +1,23 @@
 import {
   Component,
   ElementRef,
+  inject,
   OnInit,
   Renderer2,
-  ViewEncapsulation,
 } from '@angular/core';
 import { SettingsService } from './services/settings.service';
+import { FuzzyTimeComponent } from './fuzzy-time/fuzzy-time.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  imports: [FuzzyTimeComponent],
 })
 export class AppComponent implements OnInit {
-  title = 'wordclock2';
-
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-    private settingsService: SettingsService
-  ) {}
+  private readonly el = inject(ElementRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly settingsService = inject(SettingsService);
 
   ngOnInit(): void {
     this.renderer.setStyle(
@@ -28,7 +25,7 @@ export class AppComponent implements OnInit {
       'backgroundColor',
       this.settingsService.backgroundColor
     );
-    window.wallpaperPropertyListener = {
+    globalThis.wallpaperPropertyListener = {
       applyUserProperties: properties => {
         console.log(properties);
         if (properties.fontcolor) {
@@ -63,8 +60,9 @@ export class AppComponent implements OnInit {
         }
 
         if (properties.fontsize) {
-          this.settingsService.fontSize =
-            Number(properties.fontsize.value) ?? 96;
+          this.settingsService.fontSize = Number(
+            properties.fontsize?.value ?? 96
+          );
         }
 
         if (properties.weekday) {
